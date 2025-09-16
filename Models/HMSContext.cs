@@ -7,9 +7,11 @@ namespace HMS.Models
         public HMSContext(DbContextOptions<HMSContext> options) : base(options)
         {
         }
+        
         public DbSet<Staff> Staffs { get; set; }
         public DbSet<Guest> Guests { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Service> Services { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
     }
 }

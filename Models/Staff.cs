@@ -8,5 +8,9 @@
         public required string Position { get; set; }
         public required string Email { get; set; }
         public required string PhoneNumber { get; set; }
+        public ICollection<Reservation>? Reservations { get; set; }
+        public ICollection<StaffService>? StaffService { get; set; }
+
+
     }
 }

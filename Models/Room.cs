@@ -7,5 +7,6 @@
         public required string RoomType { get; set; }
         public decimal PricePerNight { get; set; }
         public bool IsAvailable { get; set; }
+        public ICollection<Reservation>? Reservations { get; set; }
     }
 }
