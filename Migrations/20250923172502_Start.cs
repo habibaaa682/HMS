@@ -30,11 +30,11 @@ namespace HMS.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    GuestId = table.Column<int>(type: "int", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserType = table.Column<int>(type: "int", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedEmail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -190,63 +190,13 @@ namespace HMS.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "GuestService",
-                columns: table => new
-                {
-                    GuestServiceId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    GuestId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ServiceId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_GuestService", x => x.GuestServiceId);
-                    table.ForeignKey(
-                        name: "FK_GuestService_AspNetUsers_GuestId",
-                        column: x => x.GuestId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_GuestService_Services_ServiceId",
-                        column: x => x.ServiceId,
-                        principalTable: "Services",
-                        principalColumn: "ServiceId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Staffs",
-                columns: table => new
-                {
-                    StaffId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Position = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ServiceId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Staffs", x => x.StaffId);
-                    table.ForeignKey(
-                        name: "FK_Staffs_Services_ServiceId",
-                        column: x => x.ServiceId,
-                        principalTable: "Services",
-                        principalColumn: "ServiceId");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Reservations",
                 columns: table => new
                 {
                     ReservationId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     RoomId = table.Column<int>(type: "int", nullable: false),
-                    GuestId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    StaffId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CheckInDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CheckOutDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
@@ -255,8 +205,8 @@ namespace HMS.Migrations
                 {
                     table.PrimaryKey("PK_Reservations", x => x.ReservationId);
                     table.ForeignKey(
-                        name: "FK_Reservations_AspNetUsers_GuestId",
-                        column: x => x.GuestId,
+                        name: "FK_Reservations_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -266,37 +216,31 @@ namespace HMS.Migrations
                         principalTable: "Rooms",
                         principalColumn: "RoomId",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Reservations_Staffs_StaffId",
-                        column: x => x.StaffId,
-                        principalTable: "Staffs",
-                        principalColumn: "StaffId",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "StaffService",
+                name: "UserServices",
                 columns: table => new
                 {
-                    StaffServiceId = table.Column<int>(type: "int", nullable: false)
+                    UserServiceId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    StaffId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ServiceId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_StaffService", x => x.StaffServiceId);
+                    table.PrimaryKey("PK_UserServices", x => x.UserServiceId);
                     table.ForeignKey(
-                        name: "FK_StaffService_Services_ServiceId",
+                        name: "FK_UserServices_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserServices_Services_ServiceId",
                         column: x => x.ServiceId,
                         principalTable: "Services",
                         principalColumn: "ServiceId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_StaffService_Staffs_StaffId",
-                        column: x => x.StaffId,
-                        principalTable: "Staffs",
-                        principalColumn: "StaffId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -340,44 +284,24 @@ namespace HMS.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_GuestService_GuestId",
-                table: "GuestService",
-                column: "GuestId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_GuestService_ServiceId",
-                table: "GuestService",
-                column: "ServiceId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Reservations_GuestId",
-                table: "Reservations",
-                column: "GuestId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Reservations_RoomId",
                 table: "Reservations",
                 column: "RoomId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reservations_StaffId",
+                name: "IX_Reservations_UserId",
                 table: "Reservations",
-                column: "StaffId");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Staffs_ServiceId",
-                table: "Staffs",
+                name: "IX_UserServices_ServiceId",
+                table: "UserServices",
                 column: "ServiceId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_StaffService_ServiceId",
-                table: "StaffService",
-                column: "ServiceId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_StaffService_StaffId",
-                table: "StaffService",
-                column: "StaffId");
+                name: "IX_UserServices_UserId",
+                table: "UserServices",
+                column: "UserId");
         }
 
         /// <inheritdoc />
@@ -399,25 +323,19 @@ namespace HMS.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "GuestService");
-
-            migrationBuilder.DropTable(
                 name: "Reservations");
 
             migrationBuilder.DropTable(
-                name: "StaffService");
+                name: "UserServices");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
                 name: "Rooms");
 
             migrationBuilder.DropTable(
-                name: "Staffs");
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "Services");

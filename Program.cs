@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddDbContext<HMSContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddIdentity<Guest, IdentityRole>().AddEntityFrameworkStores<HMSContext>()
+builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<HMSContext>()
     .AddDefaultTokenProviders();
 builder.Services.AddControllers();
 

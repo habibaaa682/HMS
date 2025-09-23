@@ -1,22 +1,6 @@
 [
   {
     "ContainingType": "HMS.Controllers.AccountController",
-    "Method": "Register",
-    "RelativePath": "api/Account",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "guestDto",
-        "Type": "HMS.Models.DTO.GuestDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "HMS.Controllers.AccountController",
     "Method": "Login",
     "RelativePath": "api/Account/login",
     "HttpMethod": "POST",
@@ -26,6 +10,22 @@
       {
         "Name": "loginDto",
         "Type": "HMS.Models.DTO.LoginDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HMS.Controllers.AccountController",
+    "Method": "Register",
+    "RelativePath": "api/Account/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "HMS.Models.DTO.RegisterDto",
         "IsRequired": true
       }
     ],

@@ -1,15 +1,16 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using HMS.Models.Enum;
+using Microsoft.AspNetCore.Identity;
 
 namespace HMS.Models
 {
-    public class Guest : IdentityUser
+    public class User : IdentityUser
     {
-        public int GuestId { get; set; }
         public required string FirstName { get; set; }
         public required string LastName { get; set; }
         public required string Email { get; set; }
         public required string PhoneNumber { get; set; }
+        public required UserTypeEnum UserType { get; set; }
         public ICollection<Reservation>? Reservations { get; set; }
-        public ICollection<GuestService>? GuestService { get; set; }
+        public ICollection<UserService>? UserService { get; set; }
     }
 }

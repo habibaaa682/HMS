@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HMS.Migrations
 {
     [DbContext(typeof(HMSContext))]
-    [Migration("20250923123323_Start")]
+    [Migration("20250923172502_Start")]
     partial class Start
     {
         /// <inheritdoc />
@@ -24,108 +24,6 @@ namespace HMS.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("HMS.Models.Guest", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("GuestId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("AspNetUsers", (string)null);
-                });
-
-            modelBuilder.Entity("HMS.Models.GuestService", b =>
-                {
-                    b.Property<int>("GuestServiceId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GuestServiceId"));
-
-                    b.Property<string>("GuestId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("ServiceId")
-                        .HasColumnType("int");
-
-                    b.HasKey("GuestServiceId");
-
-                    b.HasIndex("GuestId");
-
-                    b.HasIndex("ServiceId");
-
-                    b.ToTable("GuestService");
-                });
 
             modelBuilder.Entity("HMS.Models.Reservation", b =>
                 {
@@ -141,26 +39,21 @@ namespace HMS.Migrations
                     b.Property<DateTime>("CheckOutDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("GuestId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<int>("RoomId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StaffId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("TotalPrice")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("ReservationId");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
-                    b.HasIndex("GuestId");
+                    b.HasKey("ReservationId");
 
                     b.HasIndex("RoomId");
 
-                    b.HasIndex("StaffId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Reservations");
                 });
@@ -212,17 +105,25 @@ namespace HMS.Migrations
                     b.ToTable("Services");
                 });
 
-            modelBuilder.Entity("HMS.Models.Staff", b =>
+            modelBuilder.Entity("HMS.Models.User", b =>
                 {
-                    b.Property<int>("StaffId")
-                        .ValueGeneratedOnAdd()
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StaffId"));
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -232,45 +133,78 @@ namespace HMS.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Position")
-                        .IsRequired()
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ServiceId")
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<int>("UserType")
                         .HasColumnType("int");
 
-                    b.HasKey("StaffId");
+                    b.HasKey("Id");
 
-                    b.HasIndex("ServiceId");
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
 
-                    b.ToTable("Staffs");
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("HMS.Models.StaffService", b =>
+            modelBuilder.Entity("HMS.Models.UserService", b =>
                 {
-                    b.Property<int>("StaffServiceId")
+                    b.Property<int>("UserServiceId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StaffServiceId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserServiceId"));
 
                     b.Property<int>("ServiceId")
                         .HasColumnType("int");
 
-                    b.Property<int>("StaffId")
-                        .HasColumnType("int");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("StaffServiceId");
+                    b.HasKey("UserServiceId");
 
                     b.HasIndex("ServiceId");
 
-                    b.HasIndex("StaffId");
+                    b.HasIndex("UserId");
 
-                    b.ToTable("StaffService");
+                    b.ToTable("UserServices");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -406,76 +340,42 @@ namespace HMS.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("HMS.Models.GuestService", b =>
-                {
-                    b.HasOne("HMS.Models.Guest", "Guest")
-                        .WithMany("GuestService")
-                        .HasForeignKey("GuestId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("HMS.Models.Service", "Service")
-                        .WithMany("GuestService")
-                        .HasForeignKey("ServiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Guest");
-
-                    b.Navigation("Service");
-                });
-
             modelBuilder.Entity("HMS.Models.Reservation", b =>
                 {
-                    b.HasOne("HMS.Models.Guest", "Guest")
-                        .WithMany("Reservations")
-                        .HasForeignKey("GuestId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("HMS.Models.Room", "Room")
                         .WithMany("Reservations")
                         .HasForeignKey("RoomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("HMS.Models.Staff", "Staff")
+                    b.HasOne("HMS.Models.User", "User")
                         .WithMany("Reservations")
-                        .HasForeignKey("StaffId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Guest");
-
                     b.Navigation("Room");
 
-                    b.Navigation("Staff");
+                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("HMS.Models.Staff", b =>
-                {
-                    b.HasOne("HMS.Models.Service", null)
-                        .WithMany("StaffMembers")
-                        .HasForeignKey("ServiceId");
-                });
-
-            modelBuilder.Entity("HMS.Models.StaffService", b =>
+            modelBuilder.Entity("HMS.Models.UserService", b =>
                 {
                     b.HasOne("HMS.Models.Service", "Service")
-                        .WithMany("StaffService")
+                        .WithMany("UserService")
                         .HasForeignKey("ServiceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("HMS.Models.Staff", "Staff")
-                        .WithMany("StaffService")
-                        .HasForeignKey("StaffId")
+                    b.HasOne("HMS.Models.User", "User")
+                        .WithMany("UserService")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Service");
 
-                    b.Navigation("Staff");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -489,7 +389,7 @@ namespace HMS.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("HMS.Models.Guest", null)
+                    b.HasOne("HMS.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -498,7 +398,7 @@ namespace HMS.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("HMS.Models.Guest", null)
+                    b.HasOne("HMS.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -513,7 +413,7 @@ namespace HMS.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("HMS.Models.Guest", null)
+                    b.HasOne("HMS.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -522,18 +422,11 @@ namespace HMS.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("HMS.Models.Guest", null)
+                    b.HasOne("HMS.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("HMS.Models.Guest", b =>
-                {
-                    b.Navigation("GuestService");
-
-                    b.Navigation("Reservations");
                 });
 
             modelBuilder.Entity("HMS.Models.Room", b =>
@@ -543,18 +436,14 @@ namespace HMS.Migrations
 
             modelBuilder.Entity("HMS.Models.Service", b =>
                 {
-                    b.Navigation("GuestService");
-
-                    b.Navigation("StaffMembers");
-
-                    b.Navigation("StaffService");
+                    b.Navigation("UserService");
                 });
 
-            modelBuilder.Entity("HMS.Models.Staff", b =>
+            modelBuilder.Entity("HMS.Models.User", b =>
                 {
                     b.Navigation("Reservations");
 
-                    b.Navigation("StaffService");
+                    b.Navigation("UserService");
                 });
 #pragma warning restore 612, 618
         }

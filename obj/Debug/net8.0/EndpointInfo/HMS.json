@@ -5,7 +5,7 @@
     "version": "1.0"
   },
   "paths": {
-    "/api/Account": {
+    "/api/Account/register": {
       "post": {
         "tags": [
           "Account"
@@ -14,17 +14,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/GuestDto"
+                "$ref": "#/components/schemas/RegisterDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/GuestDto"
+                "$ref": "#/components/schemas/RegisterDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/GuestDto"
+                "$ref": "#/components/schemas/RegisterDto"
               }
             }
           }
@@ -70,14 +70,33 @@
   },
   "components": {
     "schemas": {
-      "GuestDto": {
+      "LoginDto": {
+        "required": [
+          "password",
+          "userName"
+        ],
+        "type": "object",
+        "properties": {
+          "userName": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "password": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RegisterDto": {
         "required": [
           "email",
           "firstName",
           "lastName",
           "password",
           "phoneNumber",
-          "userName"
+          "userName",
+          "userType"
         ],
         "type": "object",
         "properties": {
@@ -104,27 +123,21 @@
           "phoneNumber": {
             "minLength": 1,
             "type": "string"
+          },
+          "userType": {
+            "$ref": "#/components/schemas/UserTypeEnum"
           }
         },
         "additionalProperties": false
       },
-      "LoginDto": {
-        "required": [
-          "password",
-          "userName"
+      "UserTypeEnum": {
+        "enum": [
+          1,
+          2,
+          3
         ],
-        "type": "object",
-        "properties": {
-          "userName": {
-            "minLength": 1,
-            "type": "string"
-          },
-          "password": {
-            "minLength": 1,
-            "type": "string"
-          }
-        },
-        "additionalProperties": false
+        "type": "integer",
+        "format": "int32"
       }
     }
   }
