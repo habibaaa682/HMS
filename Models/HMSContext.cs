@@ -1,14 +1,17 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace HMS.Models
 {
-    public class HMSContext : DbContext
+    public class HMSContext : IdentityDbContext<Guest>
     {
         public HMSContext(DbContextOptions<HMSContext> options) : base(options)
         {
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Reservation>().HasOne(r => r.Guest)
                 .WithMany(g => g.Reservations).HasForeignKey(r => r.GuestId);
 

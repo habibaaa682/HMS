@@ -1,8 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
 
 namespace HMS.Models
 {
-    public class Guest
+    public class Guest : IdentityUser
     {
         public int GuestId { get; set; }
         public required string FirstName { get; set; }

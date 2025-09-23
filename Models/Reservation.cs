@@ -4,7 +4,7 @@
     {
         public int ReservationId { get; set; }
         public int RoomId { get; set; }
-        public int GuestId { get; set; }
+        public string GuestId { get; set; }
         public int StaffId { get; set; }
         public DateTime CheckInDate { get; set; }
         public DateTime CheckOutDate { get; set; }

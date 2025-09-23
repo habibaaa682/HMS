@@ -170,3 +170,6 @@ F:\HMS\obj\Debug\net8.0\refint\HMS.dll
 F:\HMS\obj\Debug\net8.0\HMS.pdb
 F:\HMS\obj\Debug\net8.0\HMS.genruntimeconfig.cache
 F:\HMS\obj\Debug\net8.0\ref\HMS.dll
+F:\HMS\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+F:\HMS\bin\Debug\net8.0\Newtonsoft.Json.dll
+F:\HMS\bin\Debug\net8.0\WebMotions.Fake.Authentication.JwtBearer.dll
