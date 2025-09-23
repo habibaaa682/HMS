@@ -3,68 +3,28 @@
   "WorkspaceRootPath": "F:\\HMS\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|f:\\hms\\models\\enum\\usertypeenum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|solutionrelative:models\\enum\\usertypeenum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|f:\\hms\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|solutionrelative:controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|F:\\HMS\\Migrations\\20250923172502_Start.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Migrations\\20250923172502_Start.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|f:\\hms\\models\\hmscontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|solutionrelative:models\\hmscontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|f:\\hms\\models\\reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|solutionrelative:models\\reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|f:\\hms\\models\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|solutionrelative:models\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|f:\\hms\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|solutionrelative:models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|f:\\hms\\models\\dto\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|solutionrelative:models\\dto\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|f:\\hms\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|f:\\hms\\models\\service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|solutionrelative:models\\service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|f:\\hms\\models\\room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|solutionrelative:models\\room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|f:\\hms\\services\\reservationservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|solutionrelative:services\\reservationservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|f:\\hms\\services\\staffservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|solutionrelative:services\\staffservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|f:\\hms\\controllers\\roomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|solutionrelative:controllers\\roomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|f:\\hms\\services\\roomservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|solutionrelative:services\\roomservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|f:\\hms\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|f:\\hms\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|solutionrelative:controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|f:\\hms\\models\\dto\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|solutionrelative:models\\dto\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|f:\\hms\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|f:\\hms\\middlewares\\servicecollectionextention.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|solutionrelative:middlewares\\servicecollectionextention.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|f:\\hms\\middlewares\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|solutionrelative:middlewares\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -74,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 647,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -86,225 +46,95 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UserTypeEnum.cs",
-              "DocumentMoniker": "F:\\HMS\\Models\\Enum\\UserTypeEnum.cs",
-              "RelativeDocumentMoniker": "Models\\Enum\\UserTypeEnum.cs",
-              "ToolTip": "F:\\HMS\\Models\\Enum\\UserTypeEnum.cs",
-              "RelativeToolTip": "Models\\Enum\\UserTypeEnum.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-23T17:14:30.059Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Reservation.cs",
-              "DocumentMoniker": "F:\\HMS\\Models\\Reservation.cs",
-              "RelativeDocumentMoniker": "Models\\Reservation.cs",
-              "ToolTip": "F:\\HMS\\Models\\Reservation.cs",
-              "RelativeToolTip": "Models\\Reservation.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAA6wAYAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-23T17:10:44.327Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Service.cs",
-              "DocumentMoniker": "F:\\HMS\\Models\\Service.cs",
-              "RelativeDocumentMoniker": "Models\\Service.cs",
-              "ToolTip": "F:\\HMS\\Models\\Service.cs",
-              "RelativeToolTip": "Models\\Service.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-23T17:10:27.954Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "UserService.cs",
-              "DocumentMoniker": "F:\\HMS\\Models\\UserService.cs",
-              "RelativeDocumentMoniker": "Models\\UserService.cs",
-              "ToolTip": "F:\\HMS\\Models\\UserService.cs",
-              "RelativeToolTip": "Models\\UserService.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAiwAsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-23T17:09:56.225Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Room.cs",
-              "DocumentMoniker": "F:\\HMS\\Models\\Room.cs",
-              "RelativeDocumentMoniker": "Models\\Room.cs",
-              "ToolTip": "F:\\HMS\\Models\\Room.cs",
-              "RelativeToolTip": "Models\\Room.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-23T17:08:19.975Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "User.cs",
-              "DocumentMoniker": "F:\\HMS\\Models\\User.cs",
-              "RelativeDocumentMoniker": "Models\\User.cs",
-              "ToolTip": "F:\\HMS\\Models\\User.cs",
-              "RelativeToolTip": "Models\\User.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-23T12:46:47.033Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "HMSContext.cs",
-              "DocumentMoniker": "F:\\HMS\\Models\\HMSContext.cs",
-              "RelativeDocumentMoniker": "Models\\HMSContext.cs",
-              "ToolTip": "F:\\HMS\\Models\\HMSContext.cs",
-              "RelativeToolTip": "Models\\HMSContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAABCAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-23T17:04:39.708Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "ReservationServices.cs",
-              "DocumentMoniker": "F:\\HMS\\Services\\ReservationServices.cs",
-              "RelativeDocumentMoniker": "Services\\ReservationServices.cs",
-              "ToolTip": "F:\\HMS\\Services\\ReservationServices.cs",
-              "RelativeToolTip": "Services\\ReservationServices.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-23T16:55:06.4Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "StaffServices.cs",
-              "DocumentMoniker": "F:\\HMS\\Services\\StaffServices.cs",
-              "RelativeDocumentMoniker": "Services\\StaffServices.cs",
-              "ToolTip": "F:\\HMS\\Services\\StaffServices.cs",
-              "RelativeToolTip": "Services\\StaffServices.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-23T16:54:37.353Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "RoomServices.cs",
-              "DocumentMoniker": "F:\\HMS\\Services\\RoomServices.cs",
-              "RelativeDocumentMoniker": "Services\\RoomServices.cs",
-              "ToolTip": "F:\\HMS\\Services\\RoomServices.cs",
-              "RelativeToolTip": "Services\\RoomServices.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-23T16:54:20.946Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "F:\\HMS\\appsettings.json",
-              "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "F:\\HMS\\appsettings.json",
-              "RelativeToolTip": "appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-09-23T13:39:41.463Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "LoginDto.cs",
-              "DocumentMoniker": "F:\\HMS\\Models\\DTO\\LoginDto.cs",
-              "RelativeDocumentMoniker": "Models\\DTO\\LoginDto.cs",
-              "ToolTip": "F:\\HMS\\Models\\DTO\\LoginDto.cs",
-              "RelativeToolTip": "Models\\DTO\\LoginDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-23T12:50:59.944Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Program.cs",
-              "DocumentMoniker": "F:\\HMS\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "F:\\HMS\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-23T12:39:10.929Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "RegisterDto.cs",
-              "DocumentMoniker": "F:\\HMS\\Models\\DTO\\RegisterDto.cs",
-              "RelativeDocumentMoniker": "Models\\DTO\\RegisterDto.cs",
-              "ToolTip": "F:\\HMS\\Models\\DTO\\RegisterDto.cs",
-              "RelativeToolTip": "Models\\DTO\\RegisterDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwBcAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-23T12:37:01.779Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "AccountController.cs",
               "DocumentMoniker": "F:\\HMS\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "Controllers\\AccountController.cs",
               "ToolTip": "F:\\HMS\\Controllers\\AccountController.cs",
               "RelativeToolTip": "Controllers\\AccountController.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAwwDUAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAowDEAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-23T12:35:14.574Z",
+              "WhenOpened": "2025-09-23T20:45:57.473Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RoomController.cs",
+              "DocumentMoniker": "F:\\HMS\\Controllers\\RoomController.cs",
+              "RelativeDocumentMoniker": "Controllers\\RoomController.cs",
+              "ToolTip": "F:\\HMS\\Controllers\\RoomController.cs",
+              "RelativeToolTip": "Controllers\\RoomController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-23T20:35:37.272Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ServiceCollectionExtention.cs",
+              "DocumentMoniker": "F:\\HMS\\MiddleWares\\ServiceCollectionExtention.cs",
+              "RelativeDocumentMoniker": "MiddleWares\\ServiceCollectionExtention.cs",
+              "ToolTip": "F:\\HMS\\MiddleWares\\ServiceCollectionExtention.cs",
+              "RelativeToolTip": "MiddleWares\\ServiceCollectionExtention.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-23T20:31:56.179Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "RoomServices.cs",
+              "DocumentMoniker": "F:\\HMS\\Services\\RoomServices.cs",
+              "RelativeDocumentMoniker": "Services\\RoomServices.cs",
+              "ToolTip": "F:\\HMS\\Services\\RoomServices.cs",
+              "RelativeToolTip": "Services\\RoomServices.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-23T20:20:10.186Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "F:\\HMS\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "F:\\HMS\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-23T20:19:36.195Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MappingProfile.cs",
+              "DocumentMoniker": "F:\\HMS\\MiddleWares\\MappingProfile.cs",
+              "RelativeDocumentMoniker": "MiddleWares\\MappingProfile.cs",
+              "ToolTip": "F:\\HMS\\MiddleWares\\MappingProfile.cs",
+              "RelativeToolTip": "MiddleWares\\MappingProfile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-23T20:17:53.35Z",
               "EditorCaption": ""
             }
           ]
         },
         {
           "DockedHeight": 28,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
             },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "20250923172502_Start.cs",
-              "DocumentMoniker": "F:\\HMS\\Migrations\\20250923172502_Start.cs",
-              "RelativeDocumentMoniker": "Migrations\\20250923172502_Start.cs",
-              "ToolTip": "F:\\HMS\\Migrations\\20250923172502_Start.cs",
-              "RelativeToolTip": "Migrations\\20250923172502_Start.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-23T17:25:03.426Z",
-              "EditorCaption": ""
             }
           ]
         }

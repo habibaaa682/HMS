@@ -30,5 +30,21 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HMS.Controllers.RoomController",
+    "Method": "CreateRoom",
+    "RelativePath": "api/Room/CreateRoom",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "room",
+        "Type": "HMS.Models.DTO.RoomDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

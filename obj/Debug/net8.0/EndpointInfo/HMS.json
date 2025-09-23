@@ -66,6 +66,37 @@
           }
         }
       }
+    },
+    "/api/Room/CreateRoom": {
+      "post": {
+        "tags": [
+          "Room"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RoomDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RoomDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RoomDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -130,6 +161,35 @@
         },
         "additionalProperties": false
       },
+      "RoomDto": {
+        "required": [
+          "roomNumber",
+          "roomType"
+        ],
+        "type": "object",
+        "properties": {
+          "roomId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "roomNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "roomType": {
+            "type": "string",
+            "nullable": true
+          },
+          "pricePerNight": {
+            "type": "number",
+            "format": "double"
+          },
+          "isAvailable": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
       "UserTypeEnum": {
         "enum": [
           1,
@@ -139,6 +199,19 @@
         "type": "integer",
         "format": "int32"
       }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "description": "Please enter JWT with Bearer into field",
+        "name": "Authorization",
+        "in": "header"
+      }
     }
-  }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
 }

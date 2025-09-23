@@ -174,3 +174,5 @@ F:\HMS\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 F:\HMS\bin\Debug\net8.0\Newtonsoft.Json.dll
 F:\HMS\bin\Debug\net8.0\WebMotions.Fake.Authentication.JwtBearer.dll
 F:\HMS\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+F:\HMS\bin\Debug\net8.0\AutoMapper.dll
+F:\HMS\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

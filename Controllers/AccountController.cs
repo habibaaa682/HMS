@@ -71,13 +71,13 @@ namespace HMS.Controllers
                 }
 
                 var token = new JwtSecurityToken(
-                    issuer: Configuration["Jwt:Issuer"],
-                    audience: Configuration["Jwt:Audience"],
+                    issuer: Configuration["JWT:Issuer"],
+                    audience: Configuration["JWT:Audience"],
                     claims: claims,
                     expires: DateTime.Now.AddMinutes(30),
                     signingCredentials: new Microsoft.IdentityModel.Tokens.SigningCredentials(
                         new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(
-                            System.Text.Encoding.UTF8.GetBytes(Configuration["Jwt:SecretKey"])
+                            System.Text.Encoding.UTF8.GetBytes(Configuration["JWT:SecretKey"])
                         ),
                         Microsoft.IdentityModel.Tokens.SecurityAlgorithms.HmacSha256
                     )
