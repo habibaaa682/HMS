@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "F:\\HMS\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|f:\\hms\\controllers\\roomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|solutionrelative:controllers\\roomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|f:\\hms\\services\\roomservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|solutionrelative:services\\roomservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -27,10 +31,6 @@
       "RelativeMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|solutionrelative:controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|f:\\hms\\controllers\\roomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|solutionrelative:controllers\\roomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|f:\\hms\\models\\reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{53CE61B7-6E25-45DE-AD2A-891C7C721C93}|HMS.csproj|solutionrelative:models\\reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -50,7 +50,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 647,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
@@ -62,7 +62,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "RoomDto.cs",
               "DocumentMoniker": "F:\\HMS\\Models\\DTO\\RoomDto.cs",
               "RelativeDocumentMoniker": "Models\\DTO\\RoomDto.cs",
@@ -75,7 +75,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "LoginDto.cs",
               "DocumentMoniker": "F:\\HMS\\Models\\DTO\\LoginDto.cs",
               "RelativeDocumentMoniker": "Models\\DTO\\LoginDto.cs",
@@ -101,7 +101,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "HMSContext.cs",
               "DocumentMoniker": "F:\\HMS\\Models\\HMSContext.cs",
               "RelativeDocumentMoniker": "Models\\HMSContext.cs",
@@ -127,7 +127,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Room.cs",
               "DocumentMoniker": "F:\\HMS\\Models\\Room.cs",
               "RelativeDocumentMoniker": "Models\\Room.cs",
@@ -140,7 +140,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "AccountController.cs",
               "DocumentMoniker": "F:\\HMS\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "Controllers\\AccountController.cs",
@@ -153,26 +153,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
               "Title": "RoomController.cs",
               "DocumentMoniker": "F:\\HMS\\Controllers\\RoomController.cs",
               "RelativeDocumentMoniker": "Controllers\\RoomController.cs",
               "ToolTip": "F:\\HMS\\Controllers\\RoomController.cs",
               "RelativeToolTip": "Controllers\\RoomController.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAkwDkAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAABwAAAAAAAAAAAA5wDMAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-23T20:35:37.272Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "RoomServices.cs",
               "DocumentMoniker": "F:\\HMS\\Services\\RoomServices.cs",
               "RelativeDocumentMoniker": "Services\\RoomServices.cs",
               "ToolTip": "F:\\HMS\\Services\\RoomServices.cs",
               "RelativeToolTip": "Services\\RoomServices.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAApAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAwAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-23T20:20:10.186Z",
               "EditorCaption": ""
@@ -196,6 +196,10 @@
           "DockedHeight": 28,
           "SelectedChildIndex": -1,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
