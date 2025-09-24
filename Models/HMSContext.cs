@@ -13,17 +13,21 @@ namespace HMS.Models
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Reservation>().HasOne(r => r.Room)
-                .WithMany(rm => rm.Reservations).HasForeignKey(r => r.RoomId);
+                .WithMany(rm => rm.Reservations).OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Reservation>().HasOne(r => r.User)
-                .WithMany(s => s.Reservations).HasForeignKey(r => r.UserId);
+                .WithMany(s => s.Reservations).OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<UserService>().HasOne(r => r.User)
-               .WithMany(s => s.UserService).HasForeignKey(r => r.UserId);
+               .WithMany(s => s.UserService).OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<UserService>().HasOne(r => r.Service)
-                .WithMany(s => s.UserService).HasForeignKey(r => r.ServiceId);
+                .WithMany(s => s.UserService).OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder.Entity<Room>().HasOne(r => r.User)
+                .WithMany(rm => rm.Room).OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Room>().HasIndex(r => r.RoomNumber).IsUnique();
         }
         public DbSet<User> User { get; set; }
         public DbSet<Room> Rooms { get; set; }

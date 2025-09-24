@@ -46,5 +46,63 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HMS.Controllers.RoomController",
+    "Method": "DeleteRoom",
+    "RelativePath": "api/Room/DeleteRoom",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "roomId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HMS.Controllers.RoomController",
+    "Method": "GetAllRooms",
+    "RelativePath": "api/Room/GetAllRooms",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HMS.Controllers.RoomController",
+    "Method": "GetRoomById",
+    "RelativePath": "api/Room/GetRoomById/{roomId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "roomId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HMS.Controllers.RoomController",
+    "Method": "UpdateRoom",
+    "RelativePath": "api/Room/UpdateRoom",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "room",
+        "Type": "HMS.Models.DTO.RoomDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

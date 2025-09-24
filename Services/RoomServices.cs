@@ -8,26 +8,106 @@ namespace HMS.Services
 {
     public interface IRoomServices
     {
-        Task<string> AddRoom(RoomDto roomDto,string id);
+        Task<object> AddRoom(RoomDto roomDto,string id);
+        Task<object> EditRoom(RoomDto roomDto,string id);
+        Task<bool> RemoveRoom(int roomId, string id);
+        Task<object> GetAllRooms();
+        Task<object> GetRoomById(int roomId);
     }
-    public class RoomServices: IRoomServices
+    public class RoomServices : IRoomServices
     {
         private readonly IMapper _mapper;
         private readonly HMSContext _db;
-        public RoomServices(IMapper mapper,HMSContext db)
+        public RoomServices(IMapper mapper, HMSContext db)
         {
             _mapper = mapper;
             _db = db;
         }
-        public async Task<string> AddRoom(RoomDto roomDto,string id)
+        public async Task<object> AddRoom(RoomDto roomDto, string id)
         {
-            var user= await _db.User.FirstOrDefaultAsync(s => s.Id == id);
+            var user = await _db.User.FirstOrDefaultAsync(s => s.Id == id);
             if (user == null) throw new Exception("User not found");
             if (user.UserType != UserTypeEnum.Admin) throw new Exception("Only Admin can add rooms");
             var room = _mapper.Map<Room>(roomDto);
+            room.UserId = id;
             await _db.Rooms.AddAsync(room);
             await _db.SaveChangesAsync();
-            return "Room Added";
+            return _mapper.Map<Room>(roomDto);
+        }
+        public async Task<object> EditRoom(RoomDto roomDto, string id)
+        {
+            var user = await _db.User.FirstOrDefaultAsync(s => s.Id == id);
+            if (user == null) throw new Exception("User not found");
+            if (user.UserType != UserTypeEnum.Admin) throw new Exception("Only Admin can update rooms");
+            var room = await _db.Rooms.FirstOrDefaultAsync(r => r.RoomId == roomDto.RoomId);
+            if (room == null) throw new Exception("Room not found");
+
+            if (!string.IsNullOrEmpty(roomDto.RoomNumber))
+                room.RoomNumber = roomDto.RoomNumber;
+
+            if (!string.IsNullOrEmpty(roomDto.RoomType))
+                room.RoomType = roomDto.RoomType;
+
+            if (roomDto.PricePerNight > 0)
+                room.PricePerNight = roomDto.PricePerNight;
+
+            room.IsAvailable = roomDto.IsAvailable;
+            await _db.SaveChangesAsync();
+            var obj = await GetRoomById(roomDto.RoomId);
+            return obj;
+        }
+        public async Task<bool> RemoveRoom(int roomId, string id)
+        {
+            var user = await _db.User.FirstOrDefaultAsync(s => s.Id == id);
+            if (user == null) throw new Exception("User not found");
+            if (user.UserType != UserTypeEnum.Admin) throw new Exception("Only Admin can update rooms");
+            var room = await _db.Rooms.FirstOrDefaultAsync(r => r.RoomId == roomId);
+            if (room == null) throw new Exception("Room not found");
+            _db.Rooms.Remove(room);
+            await _db.SaveChangesAsync();
+            return true;
+        }
+        public async Task<object> GetAllRooms()
+        {
+            var rooms = await _db.Rooms.Select(s => new
+            {
+                s.RoomId,
+                s.RoomNumber,
+                s.RoomType,
+                s.PricePerNight,
+                s.IsAvailable,
+                s.UserId,
+                user = new
+                {
+                    s.User.Id,
+                    s.User.UserName,
+                    s.User.Email,
+                    s.User.UserType
+                }
+            }).ToListAsync();
+            if (rooms == null) throw new Exception("No rooms found");
+            return rooms;
+        }
+        public async Task<object> GetRoomById(int roomId)
+        {
+            var room = await _db.Rooms.Select(s => new
+            {
+                s.RoomId,
+                s.RoomNumber,
+                s.RoomType,
+                s.PricePerNight,
+                s.IsAvailable,
+                s.UserId,
+                user = new
+                {
+                    s.User.Id,
+                    s.User.UserName,
+                    s.User.Email,
+                    s.User.UserType
+                }
+            }).FirstOrDefaultAsync(r => r.RoomId == roomId);
+            if (room == null) throw new Exception("Room not found");
+            return room;
         }
     }
 }

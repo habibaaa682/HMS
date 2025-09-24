@@ -12,5 +12,7 @@ namespace HMS.Models
         public required UserTypeEnum UserType { get; set; }
         public ICollection<Reservation>? Reservations { get; set; }
         public ICollection<UserService>? UserService { get; set; }
+        public ICollection<Room>? Room { get; set; }
+
     }
 }

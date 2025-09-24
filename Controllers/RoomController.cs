@@ -31,6 +31,39 @@ namespace HMS.Controllers
             var createdRoom = await _roomServices.AddRoom(room, UserId);
             if(createdRoom == null) return BadRequest("Room not created");
             return Ok(createdRoom);
-        }     
+        } 
+        
+        [HttpPut("UpdateRoom")]
+        public async Task<IActionResult> UpdateRoom(RoomDto room)
+        {
+            var updatedRoom = await _roomServices.EditRoom(room, UserId);
+            if (updatedRoom == null) return BadRequest("Room not updated");
+            return Ok(updatedRoom);
+        }
+
+        [HttpDelete("DeleteRoom")]
+        public async Task<IActionResult> DeleteRoom(int roomId)
+        {
+            var deletedRoom = await _roomServices.RemoveRoom(roomId, UserId);
+            if (deletedRoom == false) return BadRequest("Room not deleted");
+            return Ok(deletedRoom);
+        }
+
+        [HttpGet("GetAllRooms")]
+        public async Task<IActionResult> GetAllRooms()
+        {
+            var rooms = await _roomServices.GetAllRooms();
+            if (rooms == null) return NotFound("No rooms found");
+            return Ok(rooms);
+        }
+
+        [HttpGet("GetRoomById/{roomId}")]
+        public async Task<IActionResult> GetRoomById(int roomId)
+        {
+            var room = await _roomServices.GetRoomById(roomId);
+            if (room == null) return NotFound("Room not found");
+            return Ok(room);
+        }
+
     }
 }
