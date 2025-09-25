@@ -12,7 +12,7 @@ namespace HMS.Services
         Task<object> EditReservation(ReservationDto reservationDto, string id);
         Task<bool> RemoveReservation(int reservationId, string id);
         Task<object> GetAllReservations();
-        Task<object> GetResrvationById(int resrvationId);
+        Task<object> GetReservationById(int resrvationId);
     }
 
     public class ReservationServices : IReservationServices
@@ -113,7 +113,7 @@ namespace HMS.Services
             if (resrvations == null) throw new Exception("No rooms found");
             return resrvations;
         }
-        public async Task<object> GetResrvationById(int resrvationId)
+        public async Task<object> GetReservationById(int reservationId)
         {
             var resrvation = await _db.Reservations.Select(s => new
             {
@@ -130,7 +130,7 @@ namespace HMS.Services
                     s.User.Email,
                     s.User.UserType
                 }
-            }).FirstOrDefaultAsync(r => r.ReservationId == resrvationId);
+            }).FirstOrDefaultAsync(r => r.ReservationId == reservationId);
             if (resrvation == null) throw new Exception("resrvation not found");
             return resrvation;
         }
