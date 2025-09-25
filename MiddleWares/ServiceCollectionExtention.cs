@@ -7,6 +7,7 @@ namespace HMS.MiddleWares
         public static IServiceCollection AddDIService(this IServiceCollection services)
         {
             services.AddScoped<IRoomServices, RoomServices>();
+            services.AddScoped<IReservationServices, ReservationServices>();
             return services;
         }
     }

@@ -32,6 +32,80 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "HMS.Controllers.ReservatationController",
+    "Method": "CreateReservation",
+    "RelativePath": "api/Reservatation/CreateReservation",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "reservation",
+        "Type": "HMS.Models.DTO.ReservationDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HMS.Controllers.ReservatationController",
+    "Method": "DeleteReservation",
+    "RelativePath": "api/Reservatation/DeleteReservation",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "reservationId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HMS.Controllers.ReservatationController",
+    "Method": "GetAllReservations",
+    "RelativePath": "api/Reservatation/GetAllReservation",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HMS.Controllers.ReservatationController",
+    "Method": "GetReservationById",
+    "RelativePath": "api/Reservatation/GetResrvationById/{reservationId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "reservationId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HMS.Controllers.ReservatationController",
+    "Method": "EditReservation",
+    "RelativePath": "api/Reservatation/UpdateReservation",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "reservation",
+        "Type": "HMS.Models.DTO.ReservationDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "HMS.Controllers.RoomController",
     "Method": "CreateRoom",
     "RelativePath": "api/Room/CreateRoom",

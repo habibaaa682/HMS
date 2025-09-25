@@ -67,6 +67,125 @@
         }
       }
     },
+    "/api/Reservatation/CreateReservation": {
+      "post": {
+        "tags": [
+          "Reservatation"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReservationDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReservationDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReservationDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Reservatation/UpdateReservation": {
+      "put": {
+        "tags": [
+          "Reservatation"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReservationDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReservationDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReservationDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Reservatation/DeleteReservation": {
+      "delete": {
+        "tags": [
+          "Reservatation"
+        ],
+        "parameters": [
+          {
+            "name": "reservationId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Reservatation/GetAllReservation": {
+      "get": {
+        "tags": [
+          "Reservatation"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Reservatation/GetResrvationById/{reservationId}": {
+      "get": {
+        "tags": [
+          "Reservatation"
+        ],
+        "parameters": [
+          {
+            "name": "reservationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Room/CreateRoom": {
       "post": {
         "tags": [
@@ -245,6 +364,34 @@
           },
           "userType": {
             "$ref": "#/components/schemas/UserTypeEnum"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ReservationDto": {
+        "type": "object",
+        "properties": {
+          "reservationId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "roomId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "checkInDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "checkOutDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "totalPrice": {
+            "type": "number",
+            "format": "double"
           }
         },
         "additionalProperties": false

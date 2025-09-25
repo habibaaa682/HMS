@@ -10,6 +10,7 @@ namespace HMS.MiddleWares
         {
             CreateMap<RegisterDto, User>();
             CreateMap<RoomDto, Room>();
+            CreateMap<ReservationDto, Reservation>();
         }
     }
 }

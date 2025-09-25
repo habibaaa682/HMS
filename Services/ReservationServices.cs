@@ -56,17 +56,18 @@ namespace HMS.Services
 
             if (reservation == null) throw new Exception("Reservation not found");
 
-            if (reservationDto.RoomId > 0)
+            if (reservationDto.RoomId > 0 && reservationDto.RoomId != reservation.RoomId)
+            {
+                var room = await _db.Rooms.FirstOrDefaultAsync(r => r.RoomId == reservationDto.RoomId);
+                if (room == null) throw new Exception("Room not found");
+                if (!room.IsAvailable) throw new Exception("Room is not available");
+
+                var oldRoom = await _db.Rooms.FirstOrDefaultAsync(r => r.RoomId == reservation.RoomId);
+                if (oldRoom != null) oldRoom.IsAvailable = true;
+
                 reservation.RoomId = reservationDto.RoomId;
-
-            var room = await _db.Rooms.FirstOrDefaultAsync(r => r.RoomId == reservationDto.RoomId);
-            if (room == null) throw new Exception("Room not found");
-            if (!room.IsAvailable) throw new Exception("Room is not available");
-            room.IsAvailable = false;
-
-            if (!string.IsNullOrEmpty(reservationDto.UserId))
-                reservation.UserId = reservationDto.UserId;
-
+                room.IsAvailable = false;
+            }
             if (reservationDto.CheckInDate.HasValue)
                 reservation.CheckInDate = reservationDto.CheckInDate.Value;
 
@@ -77,8 +78,8 @@ namespace HMS.Services
                 reservation.TotalPrice = reservationDto.TotalPrice;
 
             await _db.SaveChangesAsync();
-
-            return reservationDto;
+            var obj = await GetReservationById(reservationDto.ReservationId);
+            return obj;
         }
 
         public async Task<bool> RemoveReservation(int reservationId, string id)
@@ -88,7 +89,9 @@ namespace HMS.Services
             if (user.UserType != UserTypeEnum.Admin && user.UserType != UserTypeEnum.Staff)
                 throw new Exception("Only Admin or Staff can Delete Reservation");
             var reservation = await _db.Reservations.FirstOrDefaultAsync(r => r.ReservationId == reservationId);
-            if (reservation == null) throw new Exception("Room not found");
+            if (reservation == null) throw new Exception("Reservation not found");
+            var Room = await _db.Rooms.FirstOrDefaultAsync(r => r.RoomId == reservation.RoomId);
+            if (Room != null) Room.IsAvailable = true;
             _db.Reservations.Remove(reservation);
             await _db.SaveChangesAsync();
             return true;
@@ -97,7 +100,15 @@ namespace HMS.Services
         {
             var resrvations = await _db.Reservations.Select(s => new
             {
-                s.RoomId,
+                s.ReservationId,
+                Room = new
+                {
+                    s.Room.RoomId,
+                    s.Room.RoomNumber,
+                    s.Room.RoomType,
+                    s.Room.PricePerNight,
+                    s.Room.IsAvailable,
+                },
                 s.CheckInDate,
                 s.CheckOutDate,
                 s.TotalPrice,
@@ -118,7 +129,14 @@ namespace HMS.Services
             var resrvation = await _db.Reservations.Select(s => new
             {
                 s.ReservationId,
-                s.RoomId,
+                Room = new
+                {
+                    s.Room.RoomId,
+                    s.Room.RoomNumber,
+                    s.Room.RoomType,
+                    s.Room.PricePerNight,
+                    s.Room.IsAvailable,
+                },
                 s.CheckInDate,
                 s.CheckOutDate,
                 s.TotalPrice,

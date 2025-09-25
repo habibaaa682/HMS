@@ -23,10 +23,10 @@ namespace HMS.Controllers
         }
 
         [HttpPost("CreateReservation")]
-        public async Task<IActionResult> CreateRoom(ReservationDto reservation)
+        public async Task<IActionResult> CreateReservation(ReservationDto reservation)
         {
             var createdReservation = await _reservationServices.AddReservation(reservation, UserId);
-            if (createdReservation == null) return BadRequest("Room not created");
+            if (createdReservation == null) return BadRequest("Reservation not created");
             return Ok(createdReservation);
         }
 
@@ -34,7 +34,7 @@ namespace HMS.Controllers
         public async Task<IActionResult> EditReservation(ReservationDto reservation)
         {
             var updatedReservation = await _reservationServices.EditReservation(reservation, UserId);
-            if (updatedReservation == null) return BadRequest("Room not updated");
+            if (updatedReservation == null) return BadRequest("Reservation not updated");
             return Ok(updatedReservation);
         }
 
@@ -42,7 +42,7 @@ namespace HMS.Controllers
         public async Task<IActionResult> DeleteReservation(int reservationId)
         {
             var deletedReservation = await _reservationServices.RemoveReservation(reservationId, UserId);
-            if (deletedReservation == false) return BadRequest("Room not deleted");
+            if (deletedReservation == false) return BadRequest("Reservation not deleted");
             return Ok(deletedReservation);
         }
 
@@ -50,7 +50,7 @@ namespace HMS.Controllers
         public async Task<IActionResult> GetAllReservations()
         {
             var reservations = await _reservationServices.GetAllReservations();
-            if (reservations == null) return NotFound("No rooms found");
+            if (reservations == null) return NotFound("No Reservation found");
             return Ok(reservations);
         }
 
@@ -58,7 +58,7 @@ namespace HMS.Controllers
         public async Task<IActionResult> GetReservationById(int reservationId)
         {
             var reservation = await _reservationServices.GetReservationById(reservationId);
-            if (reservation == null) return NotFound("Room not found");
+            if (reservation == null) return NotFound("Reservation not found");
             return Ok(reservation);
         }
     }
