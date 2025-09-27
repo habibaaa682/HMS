@@ -18,6 +18,9 @@ namespace HMS.Models
             modelBuilder.Entity<Reservation>().HasOne(r => r.User)
                 .WithMany(s => s.Reservations).OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder.Entity<Reservation>().HasOne(r => r.Guest)
+                 .WithMany(s => s.Reservations).OnDelete(DeleteBehavior.Restrict);
+
             modelBuilder.Entity<UserService>().HasOne(r => r.User)
                .WithMany(s => s.UserService).OnDelete(DeleteBehavior.Restrict);
 
@@ -28,12 +31,13 @@ namespace HMS.Models
                 .WithMany(rm => rm.Room).OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Room>().HasIndex(r => r.RoomNumber).IsUnique();
+
         }
         public DbSet<User> User { get; set; }
+        public DbSet<Guest> Guests { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<UserService> UserServices { get; set; }
-
         }
 }
