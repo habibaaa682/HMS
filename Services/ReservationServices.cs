@@ -17,8 +17,6 @@ namespace HMS.Services
 
     public class ReservationServices : IReservationServices
     {
-        private readonly HMSContext _context;
-
         private readonly IMapper _mapper;
         private readonly HMSContext _db;
         public ReservationServices(IMapper mapper, HMSContext db)
@@ -103,7 +101,7 @@ namespace HMS.Services
                 s.ReservationId,
                 Room = new
                 {
-                    s.Room.RoomId,
+                    s.Room!.RoomId,
                     s.Room.RoomNumber,
                     s.Room.RoomType,
                     s.Room.PricePerNight,
@@ -115,10 +113,19 @@ namespace HMS.Services
                 s.UserId,
                 user = new
                 {
-                    s.User.Id,
+                    s.User!.Id,
                     s.User.UserName,
                     s.User.Email,
                     s.User.UserType
+                },
+                Guests = new
+                {
+                    s.Guest!.GuestId,
+                    s.Guest.FirstName,
+                    s.Guest.LastName,
+                    s.Guest.Email,
+                    s.Guest.PhoneNumber,
+                    s.Guest.Address
                 }
             }).ToListAsync();
             if (resrvations == null) throw new Exception("No Reservations found");
@@ -131,7 +138,7 @@ namespace HMS.Services
                 s.ReservationId,
                 Room = new
                 {
-                    s.Room.RoomId,
+                    s.Room!.RoomId,
                     s.Room.RoomNumber,
                     s.Room.RoomType,
                     s.Room.PricePerNight,
@@ -143,10 +150,19 @@ namespace HMS.Services
                 s.UserId,
                 user = new
                 {
-                    s.User.Id,
+                    s.User!.Id,
                     s.User.UserName,
                     s.User.Email,
                     s.User.UserType
+                },
+                Guests = new
+                {
+                    s.Guest!.GuestId,
+                    s.Guest.FirstName,
+                    s.Guest.LastName,
+                    s.Guest.Email,
+                    s.Guest.PhoneNumber,
+                    s.Guest.Address
                 }
             }).FirstOrDefaultAsync(r => r.ReservationId == reservationId);
             if (resrvation == null) throw new Exception("resrvation not found");
