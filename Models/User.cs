@@ -11,8 +11,9 @@ namespace HMS.Models
         public required string PhoneNumber { get; set; }
         public required UserTypeEnum UserType { get; set; }
         public ICollection<Reservation>? Reservations { get; set; }
-        public ICollection<UserService>? UserService { get; set; }
+        public ICollection<UserService>? UserServices { get; set; }
         public ICollection<Room>? Room { get; set; }
+        public ICollection<Guest>? Guests { get; set; }
 
     }
 }

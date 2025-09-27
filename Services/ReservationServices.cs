@@ -121,7 +121,7 @@ namespace HMS.Services
                     s.User.UserType
                 }
             }).ToListAsync();
-            if (resrvations == null) throw new Exception("No rooms found");
+            if (resrvations == null) throw new Exception("No Reservations found");
             return resrvations;
         }
         public async Task<object> GetReservationById(int reservationId)

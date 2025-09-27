@@ -4,6 +4,7 @@ using HMS.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HMS.Migrations
 {
     [DbContext(typeof(HMSContext))]
-    partial class HMSContextModelSnapshot : ModelSnapshot
+    [Migration("20250927134759_AddGuestTable")]
+    partial class AddGuestTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,12 +53,7 @@ namespace HMS.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("GuestId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Guests");
                 });
@@ -388,15 +386,6 @@ namespace HMS.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("HMS.Models.Guest", b =>
-                {
-                    b.HasOne("HMS.Models.User", "User")
-                        .WithMany("Guests")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("HMS.Models.Reservation", b =>
                 {
                     b.HasOne("HMS.Models.Guest", "Guest")
@@ -520,8 +509,6 @@ namespace HMS.Migrations
 
             modelBuilder.Entity("HMS.Models.User", b =>
                 {
-                    b.Navigation("Guests");
-
                     b.Navigation("Reservations");
 
                     b.Navigation("Room");

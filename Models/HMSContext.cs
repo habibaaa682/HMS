@@ -11,27 +11,9 @@ namespace HMS.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<Reservation>().HasOne(r => r.Room)
-                .WithMany(rm => rm.Reservations).OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<Reservation>().HasOne(r => r.User)
-                .WithMany(s => s.Reservations).OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<Reservation>().HasOne(r => r.Guest)
-                 .WithMany(s => s.Reservations).OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<UserService>().HasOne(r => r.User)
-               .WithMany(s => s.UserService).OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<UserService>().HasOne(r => r.Service)
-                .WithMany(s => s.UserService).OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<Room>().HasOne(r => r.User)
-                .WithMany(rm => rm.Room).OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<Room>().HasIndex(r => r.RoomNumber).IsUnique();
-
+            ModelRelation.RoomRelations.Configure(modelBuilder);
+            ModelRelation.ReservationRelations.Configure(modelBuilder);
+            ModelRelation.UserServicesRelations.Configure(modelBuilder);
         }
         public DbSet<User> User { get; set; }
         public DbSet<Guest> Guests { get; set; }
