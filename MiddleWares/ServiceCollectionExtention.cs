@@ -8,6 +8,7 @@ namespace HMS.MiddleWares
         {
             services.AddScoped<IRoomServices, RoomServices>();
             services.AddScoped<IReservationServices, ReservationServices>();
+            services.AddScoped<IGuestServices, GuestServices>();
             return services;
         }
     }

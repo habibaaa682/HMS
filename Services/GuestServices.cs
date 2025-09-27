@@ -34,7 +34,7 @@ namespace HMS.Services
             guest.UserId = id;
             await _context.Guests.AddAsync(guest);
             await _context.SaveChangesAsync();
-            return _mapper.Map<GuestDto>(guest);
+            return _mapper.Map<Guest>(guestDto);
         }
 
         public async Task<object> EditGuest(GuestDto guestDto, string id)
@@ -65,7 +65,7 @@ namespace HMS.Services
 
         public async Task<object> GetAllGuests()
         {
-            var guests = _context.Guests.Select(g => new
+            var guests = await _context.Guests.Select(g => new
             {
                 g.GuestId,
                 g.FirstName,
@@ -75,7 +75,7 @@ namespace HMS.Services
                 g.Address,
                 user = new
                 {
-                    g.User.Id,
+                    g.User!.Id,
                     g.User.UserName,
                     g.User.Email,
                     g.User.UserType
@@ -88,7 +88,7 @@ namespace HMS.Services
 
         public async Task<object> GetGuestById(int guestId)
         {
-            var guest = _context.Guests
+            var guest = await _context.Guests
                 .Where(g => g.GuestId == guestId)
                 .Select(g => new
                 {
@@ -107,12 +107,12 @@ namespace HMS.Services
                     }
                 })
                 .FirstOrDefaultAsync();
-            return guest;
+            return guest!;
 
         }
         public async Task<bool> RemoveGuest(int GuestId, string id)
         {
-            var user = _context.User.FirstOrDefault(s => s.Id == id);
+            var user = await _context.User.FirstOrDefaultAsync(s => s.Id == id);
             if (user == null) throw new Exception("User not found");
             if (user.UserType != UserTypeEnum.Admin) throw new Exception("Only Admin can delete guests");
             var guest = _context.Guests.FirstOrDefault(g => g.GuestId == GuestId);
