@@ -8,9 +8,6 @@ namespace HMS.Services
 {
     public interface IReservationServices: IBaseBusinessService<Reservation, ReservationDto>
     {
-        Task<object> AddReservation(ReservationDto reservationDto, string id);
-        Task<object> EditReservation(ReservationDto reservationDto, string id);
-        Task<bool> RemoveReservation(int reservationId, string id);
         Task<object> GetAllReservations();
         Task<object> GetReservationById(int resrvationId);
     }
@@ -18,75 +15,106 @@ namespace HMS.Services
     public class ReservationServices(HMSContext db, IMapper mapper) : BaseBusinessService<Reservation, ReservationDto>(mapper, db), IReservationServices
     {
 
-        public async Task<object> AddReservation(ReservationDto reservationDto, string id)
+        public override async Task<ReservationDto?> Insert(ReservationDto reservationDto, string userId)
         {
-            var user = await _db.User.FirstOrDefaultAsync(s => s.Id == id);
-            if (user == null) throw new Exception("User not found");
-            if (user.UserType != UserTypeEnum.Admin && user.UserType != UserTypeEnum.Staff)
-                throw new Exception("Only Admin or Staff can Add Reservation");
-            Reservation resrvation = _mapper.Map<Reservation>(reservationDto);
-            resrvation.UserId = id;
-            var room = await _db.Rooms.FirstOrDefaultAsync(r => r.RoomId == reservationDto.RoomId);
-            if (room == null) throw new Exception("Room not found");
-            if (!room.IsAvailable) throw new Exception("Room is not available");
-            room.IsAvailable = false;
-            await _db.Reservations.AddAsync(resrvation);
-            await _db.SaveChangesAsync();
-            return _mapper.Map<Reservation>(reservationDto);
-        }
-        public async Task<object> EditReservation(ReservationDto reservationDto, string id)
-        {
-            var user = await _db.User.FirstOrDefaultAsync(s => s.Id == id);
-            if (user == null) throw new Exception("User not found");
-
-            if (user.UserType != UserTypeEnum.Admin && user.UserType != UserTypeEnum.Staff)
-                throw new Exception("Only Admin or Staff can update reservations");
-
-            var reservation = await _db.Reservations
-                .FirstOrDefaultAsync(r => r.ReservationId == reservationDto.ReservationId);
-
-            if (reservation == null) throw new Exception("Reservation not found");
-
-            if (reservationDto.RoomId > 0 && reservationDto.RoomId != reservation.RoomId)
+            try
             {
+                var user = await _db.User.FirstOrDefaultAsync(u => u.Id == userId);
+                if (user == null)
+                    throw new Exception("User not found");
+                if (user.UserType != UserTypeEnum.Admin && user.UserType != UserTypeEnum.Staff)
+                    throw new Exception("Only Admin or Staff can add a reservation");
                 var room = await _db.Rooms.FirstOrDefaultAsync(r => r.RoomId == reservationDto.RoomId);
-                if (room == null) throw new Exception("Room not found");
-                if (!room.IsAvailable) throw new Exception("Room is not available");
-
-                var oldRoom = await _db.Rooms.FirstOrDefaultAsync(r => r.RoomId == reservation.RoomId);
-                if (oldRoom != null) oldRoom.IsAvailable = true;
-
-                reservation.RoomId = reservationDto.RoomId;
+                if (room == null)
+                    throw new Exception("Room not found");
+                if (!room.IsAvailable)
+                    throw new Exception("Room is not available");
                 room.IsAvailable = false;
+                var result = await base.Insert(reservationDto, userId);
+                return result;
             }
-            if (reservationDto.CheckInDate.HasValue)
-                reservation.CheckInDate = reservationDto.CheckInDate.Value;
-
-            if (reservationDto.CheckOutDate.HasValue)
-                reservation.CheckOutDate = reservationDto.CheckOutDate.Value;
-
-            if (reservationDto.TotalPrice > 0)
-                reservation.TotalPrice = reservationDto.TotalPrice;
-
-            await _db.SaveChangesAsync();
-            var obj = await GetReservationById(reservationDto.ReservationId);
-            return obj;
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error inserting reservation: {ex.Message}");
+                return null;
+            }
         }
 
-        public async Task<bool> RemoveReservation(int reservationId, string id)
+        public override async Task<ReservationDto?> Edit(ReservationDto reservationDto, string userId)
         {
-            var user = await _db.User.FirstOrDefaultAsync(s => s.Id == id);
-            if (user == null) throw new Exception("User not found");
-            if (user.UserType != UserTypeEnum.Admin && user.UserType != UserTypeEnum.Staff)
-                throw new Exception("Only Admin or Staff can Delete Reservation");
-            var reservation = await _db.Reservations.FirstOrDefaultAsync(r => r.ReservationId == reservationId);
-            if (reservation == null) throw new Exception("Reservation not found");
-            var Room = await _db.Rooms.FirstOrDefaultAsync(r => r.RoomId == reservation.RoomId);
-            if (Room != null) Room.IsAvailable = true;
-            _db.Reservations.Remove(reservation);
-            await _db.SaveChangesAsync();
-            return true;
+            try
+            {
+                var user = await _db.User.FirstOrDefaultAsync(u => u.Id == userId);
+                if (user == null)
+                    throw new Exception("User not found");
+
+                if (user.UserType != UserTypeEnum.Admin && user.UserType != UserTypeEnum.Staff)
+                    throw new Exception("Only Admin or Staff can update reservations");
+
+                var existingReservation = await _db.Reservations
+                    .FirstOrDefaultAsync(r => r.ReservationId == reservationDto.ReservationId);
+
+                if (existingReservation == null)
+                    throw new Exception("Reservation not found");
+
+                if (reservationDto.RoomId > 0 && reservationDto.RoomId != existingReservation.RoomId)
+                {
+                    var newRoom = await _db.Rooms.FirstOrDefaultAsync(r => r.RoomId == reservationDto.RoomId);
+                    if (newRoom == null)
+                        throw new Exception("Room not found");
+                    if (!newRoom.IsAvailable)
+                        throw new Exception("Room is not available");
+
+                    var oldRoom = await _db.Rooms.FirstOrDefaultAsync(r => r.RoomId == existingReservation.RoomId);
+                    if (oldRoom != null)
+                        oldRoom.IsAvailable = true;
+
+                    newRoom.IsAvailable = false;
+                }
+                var updated = await base.Edit(reservationDto, userId);
+
+                return updated;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error editing reservation: {ex.Message}");
+                return null;
+            }
         }
+
+
+        public override async Task<bool> Remove(int reservationId, string userId)
+        {
+            try
+            {
+                var user = await _db.User.FirstOrDefaultAsync(u => u.Id == userId);
+                if (user == null)
+                    throw new Exception("User not found");
+
+                if (user.UserType != UserTypeEnum.Admin && user.UserType != UserTypeEnum.Staff)
+                    throw new Exception("Only Admin or Staff can delete a reservation");
+
+                var reservation = await _db.Reservations
+                    .FirstOrDefaultAsync(r => r.ReservationId == reservationId);
+
+                if (reservation == null)
+                    throw new Exception("Reservation not found");
+
+                var room = await _db.Rooms.FirstOrDefaultAsync(r => r.RoomId == reservation.RoomId);
+                if (room != null)
+                    room.IsAvailable = true;
+
+                var result = await base.Remove(reservationId,userId);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error removing reservation: {ex.Message}");
+                return false;
+            }
+        }
+
         public async Task<object> GetAllReservations()
         {
             var resrvations = await _db.Reservations.Select(s => new

@@ -9,9 +9,9 @@ namespace HMS.Services
     {
         Task<List<T2>> GetAllAsync();
         Task<T1?> GetByIdAsync(object id);
-        Task<T2?> Insert(T2 model);
-        Task<T2?> Edit(T2 model);
-        Task<bool> Remove(object id);
+        Task<T2?> Insert(T2 model, string id);
+        Task<T2?> Edit(T2 model, string id);
+        Task<bool> Remove(int id, string userId);
     }
     public class BaseBusinessService<T1, T2> : IBaseBusinessService<T1,T2>
         where T1 : class
@@ -35,7 +35,7 @@ namespace HMS.Services
         {
             return await dbSet.FindAsync(id);
         }
-        public async virtual Task<T2?> Insert(T2 model)
+        public async virtual Task<T2?> Insert(T2 model, string id)
         {
             try
             {
@@ -49,12 +49,12 @@ namespace HMS.Services
                 return null;
             }
         }
-        public async virtual Task<T2?> Edit(T2 model)
+        public async virtual Task<T2?> Edit(T2 model,string id)
         {
             try
             {
-                var id = (int)(model.GetType()?.GetProperty("Id")?.GetValue(model) ?? 0);
-                var data = await GetByIdAsync(id);
+                var _id = (int)(model.GetType()?.GetProperty("Id")?.GetValue(model) ?? 0);
+                var data = await GetByIdAsync(_id);
                 if (data == null) return null;
 
                 var properties = model.GetType().GetProperties();
@@ -73,7 +73,7 @@ namespace HMS.Services
                 return null;
             }
         }
-        public async virtual Task<bool> Remove(object id)
+        public async virtual Task<bool> Remove(int id, string userId)
         {
             try
             {
