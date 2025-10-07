@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HMS.Services
 {
-    public interface IGuestServices
+    public interface IGuestServices: IBaseBusinessService<Guest, GuestDto>
     {
         Task<object> GetAllGuests();
         Task<object> GetGuestById(int guestId);
@@ -14,38 +14,31 @@ namespace HMS.Services
         Task<object> EditGuest(GuestDto guestDto, string id);
         Task<bool> RemoveGuest(int GuestId, string id);
     }
-    public class GuestServices : IGuestServices
+    public class GuestServices(HMSContext db, IMapper mapper) : BaseBusinessService<Guest, GuestDto>(mapper, db), IGuestServices
     {
-        private readonly HMSContext _context;
-        private readonly IMapper _mapper;
-        public GuestServices(IMapper mapper, HMSContext context)
-        {
-            _mapper = mapper;
-            _context = context;
-        }
         public async Task<object> AddGuest(GuestDto guestDto, string id)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(s => s.Id == id);
+            var user = await db.Users.FirstOrDefaultAsync(s => s.Id == id);
 
             if (user == null) throw new Exception("User not found");
             if (user.UserType != UserTypeEnum.Admin && user.UserType != UserTypeEnum.Staff)
             throw new Exception("Only Admin or Staff can Add Reservation");
             var guest = _mapper.Map<Guest>(guestDto);
             guest.UserId = id;
-            await _context.Guests.AddAsync(guest);
-            await _context.SaveChangesAsync();
+            await db.Guests.AddAsync(guest);
+            await db.SaveChangesAsync();
             return _mapper.Map<Guest>(guestDto);
         }
 
         public async Task<object> EditGuest(GuestDto guestDto, string id)
         {
-            var user = await _context.User.FirstOrDefaultAsync(s => s.Id == id);
+            var user = await db.User.FirstOrDefaultAsync(s => s.Id == id);
             if (user == null) throw new Exception("User not found");
 
             if (user.UserType != UserTypeEnum.Admin && user.UserType != UserTypeEnum.Staff)
                 throw new Exception("Only Admin or Staff can update reservations");
 
-            var guest = await _context.Guests
+            var guest = await db.Guests
                 .FirstOrDefaultAsync(r => r.GuestId == guestDto.GuestId);
             if (guest == null) throw new Exception("guest not found");
             if (!string.IsNullOrEmpty(guestDto.FirstName))
@@ -58,14 +51,14 @@ namespace HMS.Services
                 guest.PhoneNumber = guestDto.PhoneNumber;
             if (!string.IsNullOrEmpty(guestDto.Address))
                 guest.Address = guestDto.Address;
-                await _context.SaveChangesAsync();
+                await db.SaveChangesAsync();
             var obj = await GetGuestById(guestDto.GuestId);
             return obj;
         }
 
         public async Task<object> GetAllGuests()
         {
-            var guests = await _context.Guests.Select(g => new
+            var guests = await db.Guests.Select(g => new
             {
                 g.GuestId,
                 g.FirstName,
@@ -88,7 +81,7 @@ namespace HMS.Services
 
         public async Task<object> GetGuestById(int guestId)
         {
-            var guest = await _context.Guests
+            var guest = await db.Guests
                 .Where(g => g.GuestId == guestId)
                 .Select(g => new
                 {
@@ -112,13 +105,13 @@ namespace HMS.Services
         }
         public async Task<bool> RemoveGuest(int GuestId, string id)
         {
-            var user = await _context.User.FirstOrDefaultAsync(s => s.Id == id);
+            var user = await db.User.FirstOrDefaultAsync(s => s.Id == id);
             if (user == null) throw new Exception("User not found");
             if (user.UserType != UserTypeEnum.Admin) throw new Exception("Only Admin can delete guests");
-            var guest = _context.Guests.FirstOrDefault(g => g.GuestId == GuestId);
+            var guest = db.Guests.FirstOrDefault(g => g.GuestId == GuestId);
             if (guest == null) throw new Exception("Guest not found");
-            _context.Guests.Remove(guest);
-            _context.SaveChanges();
+            db.Guests.Remove(guest);
+            db.SaveChanges();
             return true;
 
         }

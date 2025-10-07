@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HMS.Services
 {
-    public interface IReservationServices
+    public interface IReservationServices: IBaseBusinessService<Reservation, ReservationDto>
     {
         Task<object> AddReservation(ReservationDto reservationDto, string id);
         Task<object> EditReservation(ReservationDto reservationDto, string id);
@@ -15,16 +15,9 @@ namespace HMS.Services
         Task<object> GetReservationById(int resrvationId);
     }
 
-    public class ReservationServices : IReservationServices
+    public class ReservationServices(HMSContext db, IMapper mapper) : BaseBusinessService<Reservation, ReservationDto>(mapper, db), IReservationServices
     {
-        private readonly IMapper _mapper;
-        private readonly HMSContext _db;
-        public ReservationServices(IMapper mapper, HMSContext db)
-        {
-            _mapper = mapper;
-            _db = db;
 
-        }
         public async Task<object> AddReservation(ReservationDto reservationDto, string id)
         {
             var user = await _db.User.FirstOrDefaultAsync(s => s.Id == id);

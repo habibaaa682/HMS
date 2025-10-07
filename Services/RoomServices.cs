@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HMS.Services
 {
-    public interface IRoomServices
+    public interface IRoomServices: IBaseBusinessService<Room, RoomDto>
     {
         Task<object> AddRoom(RoomDto roomDto,string id);
         Task<object> EditRoom(RoomDto roomDto,string id);
@@ -14,15 +14,9 @@ namespace HMS.Services
         Task<object> GetAllRooms();
         Task<object> GetRoomById(int roomId);
     }
-    public class RoomServices : IRoomServices
+    public class RoomServices(HMSContext db, IMapper mapper): BaseBusinessService<Room, RoomDto>( mapper, db), IRoomServices
     {
-        private readonly IMapper _mapper;
-        private readonly HMSContext _db;
-        public RoomServices(IMapper mapper, HMSContext db)
-        {
-            _mapper = mapper;
-            _db = db;
-        }
+
         public async Task<object> AddRoom(RoomDto roomDto, string id)
         {
             var user = await _db.User.FirstOrDefaultAsync(s => s.Id == id);
