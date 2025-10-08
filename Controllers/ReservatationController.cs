@@ -25,7 +25,7 @@ namespace HMS.Controllers
         [HttpPost("CreateReservation")]
         public async Task<IActionResult> CreateReservation(ReservationDto reservation)
         {
-            var createdReservation = await _reservationServices.AddReservation(reservation, UserId);
+            var createdReservation = await _reservationServices.Insert(reservation, UserId);
             if (createdReservation == null) return BadRequest("Reservation not created");
             return Ok(createdReservation);
         }
@@ -33,7 +33,7 @@ namespace HMS.Controllers
         [HttpPut("UpdateReservation")]
         public async Task<IActionResult> EditReservation(ReservationDto reservation)
         {
-            var updatedReservation = await _reservationServices.EditReservation(reservation, UserId);
+            var updatedReservation = await _reservationServices.Edit(reservation, UserId);
             if (updatedReservation == null) return BadRequest("Reservation not updated");
             return Ok(updatedReservation);
         }
@@ -41,7 +41,7 @@ namespace HMS.Controllers
         [HttpDelete("DeleteReservation")]
         public async Task<IActionResult> DeleteReservation(int reservationId)
         {
-            var deletedReservation = await _reservationServices.RemoveReservation(reservationId, UserId);
+            var deletedReservation = await _reservationServices.Remove(reservationId, UserId);
             if (deletedReservation == false) return BadRequest("Reservation not deleted");
             return Ok(deletedReservation);
         }

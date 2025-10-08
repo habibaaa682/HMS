@@ -13,7 +13,8 @@ namespace HMS.Models
         public ICollection<Reservation>? Reservations { get; set; }
         public ICollection<UserService>? UserServices { get; set; }
         public ICollection<Room>? Room { get; set; }
-        public ICollection<Guest>? Guests { get; set; }
+        public Guest? Guest { get; set; }
+        public Staff? Staff { get; set; }
 
     }
 }

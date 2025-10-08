@@ -14,6 +14,11 @@ namespace HMS.Models
             ModelRelation.RoomRelations.Configure(modelBuilder);
             ModelRelation.ReservationRelations.Configure(modelBuilder);
             ModelRelation.UserServicesRelations.Configure(modelBuilder);
+            ModelRelation.GuestRelation.Configure(modelBuilder);
+            ModelRelation.ServiceRelation.Configure(modelBuilder);
+            ModelRelation.StaffServiceRelation.Configure(modelBuilder);
+            ModelRelation.UserRelation.Configure(modelBuilder);
+            ModelRelation.StaffRelation.Configure(modelBuilder);
         }
         public DbSet<User> User { get; set; }
         public DbSet<Guest> Guests { get; set; }
@@ -21,5 +26,7 @@ namespace HMS.Models
         public DbSet<Service> Services { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<UserService> UserServices { get; set; }
+        public DbSet<Staff> Staffs { get; set; }
+        public DbSet<StaffService> StaffServices { get; set; }
         }
 }

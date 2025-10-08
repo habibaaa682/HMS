@@ -28,7 +28,7 @@ namespace HMS.Controllers
         [HttpPost("CreateRoom")]
         public async Task<IActionResult> CreateRoom(RoomDto room)
         {
-            var createdRoom = await _roomServices.AddRoom(room, UserId);
+            var createdRoom = await _roomServices.Insert(room, UserId);
             if(createdRoom == null) return BadRequest("Room not created");
             return Ok(createdRoom);
         } 
@@ -44,7 +44,7 @@ namespace HMS.Controllers
         [HttpDelete("DeleteRoom")]
         public async Task<IActionResult> DeleteRoom(int roomId)
         {
-            var deletedRoom = await _roomServices.RemoveRoom(roomId, UserId);
+            var deletedRoom = await _roomServices.Remove(roomId, UserId);
             if (deletedRoom == false) return BadRequest("Room not deleted");
             return Ok(deletedRoom);
         }

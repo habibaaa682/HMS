@@ -24,21 +24,21 @@ namespace HMS.Controllers
         [HttpPost("CreateGuest")]
         public async Task<IActionResult> CreateGuest(GuestDto guest)
         {
-            var createdGuest = await _guestServices.AddGuest(guest, UserId);
+            var createdGuest = await _guestServices.Insert(guest, UserId);
             if (createdGuest == null) return BadRequest("Guest not created");
             return Ok(createdGuest);
         }
         [HttpPut("UpdateGuest")]
         public async Task<IActionResult> EditGuest(GuestDto guest)
         {
-            var updatedGuest = await _guestServices.EditGuest(guest, UserId);
+            var updatedGuest = await _guestServices.Edit(guest, UserId);
             if (updatedGuest == null) return BadRequest("Guest not updated");
             return Ok(updatedGuest);
         }
         [HttpDelete("DeleteGuest")]
         public async Task<IActionResult> DeleteGuest(int guestId)
         {
-            var deletedGuest = await _guestServices.RemoveGuest(guestId, UserId);
+            var deletedGuest = await _guestServices.Remove(guestId, UserId);
             if (deletedGuest == false) return BadRequest("Guest not deleted");
             return Ok(deletedGuest);
         }

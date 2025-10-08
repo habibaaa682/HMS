@@ -8,10 +8,11 @@ namespace HMS.MiddleWares
     {
         public MappingProfile()
         {
-            CreateMap<RegisterDto, User>();
-            CreateMap<RoomDto, Room>();
-            CreateMap<ReservationDto, Reservation>();
-            CreateMap<GuestDto, Guest>();
+            CreateMap<RegisterDto, User>().ReverseMap();
+            CreateMap<RoomDto, Room>().ReverseMap();
+            CreateMap<ReservationDto, Reservation>().ReverseMap();
+            CreateMap<GuestDto, Guest>().ReverseMap();
+            CreateMap<StaffDto, Staff>().ReverseMap();
         }
     }
 }
