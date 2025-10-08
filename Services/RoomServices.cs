@@ -8,25 +8,26 @@ namespace HMS.Services
 {
     public interface IRoomServices: IBaseBusinessService<Room, RoomDto>
     {
-        Task<object> AddRoom(RoomDto roomDto,string id);
         Task<object> EditRoom(RoomDto roomDto,string id);
-        Task<bool> RemoveRoom(int roomId, string id);
         Task<object> GetAllRooms();
         Task<object> GetRoomById(int roomId);
     }
     public class RoomServices(HMSContext db, IMapper mapper): BaseBusinessService<Room, RoomDto>( mapper, db), IRoomServices
     {
 
-        public async Task<object> AddRoom(RoomDto roomDto, string id)
+        public override async Task<RoomDto?> Insert(RoomDto roomDto, string id)
         {
+            try { 
             var user = await _db.User.FirstOrDefaultAsync(s => s.Id == id);
             if (user == null) throw new Exception("User not found");
             if (user.UserType != UserTypeEnum.Admin) throw new Exception("Only Admin can add rooms");
-            var room = _mapper.Map<Room>(roomDto);
-            room.UserId = id;
-            await _db.Rooms.AddAsync(room);
-            await _db.SaveChangesAsync();
-            return _mapper.Map<Room>(roomDto);
+            var result = await base.Insert(roomDto, id);
+            return result;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
         public async Task<object> EditRoom(RoomDto roomDto, string id)
         {
@@ -50,17 +51,22 @@ namespace HMS.Services
             var obj = await GetRoomById(roomDto.RoomId);
             return obj;
         }
-        public async Task<bool> RemoveRoom(int roomId, string id)
+        public override async Task<bool> Remove(int roomId, string id)
         {
+            try { 
             var user = await _db.User.FirstOrDefaultAsync(s => s.Id == id);
             if (user == null) throw new Exception("User not found");
             if (user.UserType != UserTypeEnum.Admin) throw new Exception("Only Admin can update rooms");
             var room = await _db.Rooms.FirstOrDefaultAsync(r => r.RoomId == roomId);
             if (room == null) throw new Exception("Room not found");
-            _db.Rooms.Remove(room);
-            await _db.SaveChangesAsync();
+            var result = await base.Remove(roomId, id);
             return true;
         }
+            catch (Exception)
+            {
+                return false;
+            }
+}
         public async Task<object> GetAllRooms()
         {
             var rooms = await _db.Rooms.Select(s => new
