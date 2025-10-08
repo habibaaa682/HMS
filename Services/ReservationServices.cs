@@ -33,9 +33,8 @@ namespace HMS.Services
                 var result = await base.Insert(reservationDto, userId);
                 return result;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Console.WriteLine($"Error inserting reservation: {ex.Message}");
                 return null;
             }
         }
@@ -75,9 +74,8 @@ namespace HMS.Services
 
                 return updated;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Console.WriteLine($"Error editing reservation: {ex.Message}");
                 return null;
             }
         }
@@ -108,9 +106,8 @@ namespace HMS.Services
 
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Console.WriteLine($"Error removing reservation: {ex.Message}");
                 return false;
             }
         }
