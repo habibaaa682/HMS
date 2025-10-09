@@ -6,8 +6,6 @@ using System.Security.Claims;
 
 namespace HMS.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
     public class GuestController : BaseBusinessController<Guest, GuestDto, IGuestServices>
     {
         private readonly IGuestServices _guestServices;
@@ -36,14 +34,14 @@ namespace HMS.Controllers
             if (deletedGuest == false) return BadRequest("Guest not deleted");
             return Ok(deletedGuest);
         }
-        [HttpGet("GetAllGuests")]
+        [HttpGet]
         public async Task<IActionResult> GetAllGuests()
         {
             var guests = await _guestServices.GetAllGuests();
             if (guests == null) return NotFound("No Guest found");
             return Ok(guests);
         }
-        [HttpGet("GetGuestById/{guestId}")]
+        [HttpGet]
         public async Task<IActionResult> GetGuestById(int guestId)
         {
             var guest = await _guestServices.GetGuestById(guestId);

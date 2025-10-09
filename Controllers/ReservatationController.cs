@@ -2,12 +2,9 @@
 using HMS.Models.DTO;
 using HMS.Services;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 
 namespace HMS.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
     public class ReservatationController : BaseBusinessController<Reservation, ReservationDto, IReservationServices>
     {
         private readonly IReservationServices _reservationServices;
@@ -40,7 +37,7 @@ namespace HMS.Controllers
             return Ok(deletedReservation);
         }
 
-        [HttpGet("GetAllReservation")]
+        [HttpGet]
         public async Task<IActionResult> GetAllReservations()
         {
             var reservations = await _reservationServices.GetAllReservations();
@@ -48,7 +45,7 @@ namespace HMS.Controllers
             return Ok(reservations);
         }
 
-        [HttpGet("GetResrvationById/{reservationId}")]
+        [HttpGet]
         public async Task<IActionResult> GetReservationById(int reservationId)
         {
             var reservation = await _reservationServices.GetReservationById(reservationId);

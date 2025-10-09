@@ -5,7 +5,7 @@ using System.Security.Claims;
 
 namespace HMS.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class BaseBusinessController<T1, T2, T3> : ControllerBase
         where T1 : class

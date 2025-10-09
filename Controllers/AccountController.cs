@@ -1,7 +1,5 @@
 ﻿using HMS.Models;
 using HMS.Models.DTO;
-using HMS.Models.Enum;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;

@@ -1,14 +1,10 @@
 ﻿using HMS.Models;
 using HMS.Models.DTO;
 using HMS.Services;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HMS.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    [Authorize]
     public class RoomController : BaseBusinessController<Room ,RoomDto , IRoomServices>
     {
         private readonly IRoomServices _roomServices;
@@ -41,7 +37,7 @@ namespace HMS.Controllers
             return Ok(deletedRoom);
         }
 
-        [HttpGet("GetAllRooms")]
+        [HttpGet]
         public async Task<IActionResult> GetAllRooms()
         {
             var rooms = await _roomServices.GetAllRooms();
@@ -49,7 +45,7 @@ namespace HMS.Controllers
             return Ok(rooms);
         }
 
-        [HttpGet("GetRoomById/{roomId}")]
+        [HttpGet]
         public async Task<IActionResult> GetRoomById(int roomId)
         {
             var room = await _roomServices.GetRoomById(roomId);
