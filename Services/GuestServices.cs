@@ -43,7 +43,8 @@ namespace HMS.Services
             var guest = await db.Guests
                 .FirstOrDefaultAsync(r => r.GuestId == guestDto.GuestId);
             if (guest == null) throw new Exception("guest not found");
-            var updated = await base.Edit(guestDto, id);
+                guestDto.UserId = id;
+                var updated = await base.Edit(guestDto, id);
 
             return updated;
         }

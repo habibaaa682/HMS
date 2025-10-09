@@ -53,7 +53,10 @@ namespace HMS.Services
         {
             try
             {
-                var _id = (int)(model.GetType()?.GetProperty("Id")?.GetValue(model) ?? 0);
+                var idProperty = model.GetType()?.GetProperties()
+                    .FirstOrDefault(p => p.Name.EndsWith("Id", StringComparison.OrdinalIgnoreCase));
+
+                var _id = (int)(idProperty?.GetValue(model) ?? 0); 
                 var data = await GetByIdAsync(_id);
                 if (data == null) return null;
 

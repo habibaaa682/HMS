@@ -42,6 +42,7 @@ namespace HMS.Services
                 var guest = await db.Staffs
                     .FirstOrDefaultAsync(r => r.StaffId == staffDto.StaffId);
                 if (guest == null) throw new Exception("Staff not found");
+                staffDto.UserId = id;
                 var updated = await base.Edit(staffDto, id);
 
                 return updated;

@@ -71,6 +71,7 @@ namespace HMS.Services
 
                     newRoom.IsAvailable = false;
                 }
+                reservationDto.UserId = userId;
                 var updated = await base.Edit(reservationDto, userId);
 
                 return updated;
@@ -80,8 +81,6 @@ namespace HMS.Services
                 return null;
             }
         }
-
-
         public override async Task<bool> Remove(int reservationId, string userId)
         {
             try
@@ -112,7 +111,6 @@ namespace HMS.Services
                 return false;
             }
         }
-
         public async Task<object> GetAllReservations()
         {
             var resrvations = await _db.Reservations.Select(s => new
