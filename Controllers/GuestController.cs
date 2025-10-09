@@ -1,4 +1,5 @@
-﻿using HMS.Models.DTO;
+﻿using HMS.Models;
+using HMS.Models.DTO;
 using HMS.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -7,36 +8,29 @@ namespace HMS.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GuestController : ControllerBase
+    public class GuestController : BaseBusinessController<Guest, GuestDto, IGuestServices>
     {
-        public string UserId { get { return GetUserId(); } }
-        private string GetUserId()
-        {
-            string? m = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            if (!string.IsNullOrEmpty(m)) return m;
-            throw new Exception("Error In Read UserId From Token");
-        }
         private readonly IGuestServices _guestServices;
         public GuestController(IGuestServices guestServices)
         {
             _guestServices = guestServices;
         }
-        [HttpPost("CreateGuest")]
-        public async Task<IActionResult> CreateGuest(GuestDto guest)
+        [HttpPost]
+        public override async Task<IActionResult> Insert(GuestDto guest)
         {
             var createdGuest = await _guestServices.Insert(guest, UserId);
             if (createdGuest == null) return BadRequest("Guest not created");
             return Ok(createdGuest);
         }
-        [HttpPut("UpdateGuest")]
-        public async Task<IActionResult> EditGuest(GuestDto guest)
+        [HttpPut]
+        public override async Task<IActionResult> Edit(GuestDto guest)
         {
             var updatedGuest = await _guestServices.Edit(guest, UserId);
             if (updatedGuest == null) return BadRequest("Guest not updated");
             return Ok(updatedGuest);
         }
-        [HttpDelete("DeleteGuest")]
-        public async Task<IActionResult> DeleteGuest(int guestId)
+        [HttpDelete]
+        public override async Task<IActionResult> Remove(int guestId)
         {
             var deletedGuest = await _guestServices.Remove(guestId, UserId);
             if (deletedGuest == false) return BadRequest("Guest not deleted");
