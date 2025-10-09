@@ -21,7 +21,8 @@ namespace HMS.Services
             var user = await _db.User.FirstOrDefaultAsync(s => s.Id == id);
             if (user == null) throw new Exception("User not found");
             if (user.UserType != UserTypeEnum.Admin) throw new Exception("Only Admin can add rooms");
-            var result = await base.Insert(roomDto, id);
+            roomDto.UserId = id;
+                var result = await base.Insert(roomDto, id);
             return result;
             }
             catch (Exception)

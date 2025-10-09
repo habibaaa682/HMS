@@ -2,7 +2,8 @@
 {
     public class GuestDto
     {
-        public  int GuestId { get; set; }
+        public  int? GuestId { get; set; }
+        public string UserId { get; set; } = null!;
         public  string? FirstName { get; set; }
         public  string? LastName { get; set; }
         public  string? Email { get; set; }

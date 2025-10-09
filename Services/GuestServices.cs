@@ -21,7 +21,8 @@ namespace HMS.Services
             if (user == null) throw new Exception("User not found");
             if (user.UserType != UserTypeEnum.Admin && user.UserType != UserTypeEnum.Staff)
             throw new Exception("Only Admin or Staff can Add Reservation");
-            var result = await base.Insert(guestDto, id);
+                guestDto.UserId = id;
+                var result = await base.Insert(guestDto, id);
             return result;
             }
             catch (Exception)

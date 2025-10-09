@@ -30,6 +30,7 @@ namespace HMS.Services
                 if (!room.IsAvailable)
                     throw new Exception("Room is not available");
                 room.IsAvailable = false;
+                reservationDto.UserId = userId;
                 var result = await base.Insert(reservationDto, userId);
                 return result;
             }
