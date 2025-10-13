@@ -10,6 +10,7 @@ namespace HMS.MiddleWares
             services.AddScoped<IReservationServices, ReservationServices>();
             services.AddScoped<IGuestServices, GuestServices>();
             services.AddScoped<IStaffServices, StaffServices>();
+            services.AddScoped<IServiceServices, ServiceServices>();
             return services;
         }
     }

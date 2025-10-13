@@ -13,6 +13,7 @@ namespace HMS.MiddleWares
             CreateMap<ReservationDto, Reservation>().ReverseMap();
             CreateMap<GuestDto, Guest>().ReverseMap();
             CreateMap<StaffDto, Staff>().ReverseMap();
+            CreateMap<ServiceDto, Service>().ReverseMap();
         }
     }
 }
