@@ -46,5 +46,12 @@ namespace HMS.Controllers
             if (service == null) return NotFound("Service not found");
             return Ok(service);
         }
+        [HttpPost]
+        public async Task<IActionResult> ApplyService(int serviceId, int guestId, int staffId)
+        {
+            var result = await _serviceServices.ApplyService(serviceId, UserId, guestId, staffId);
+            if (result == false) return BadRequest("Service not applied");
+            return Ok(result);
+        }
     }
 }

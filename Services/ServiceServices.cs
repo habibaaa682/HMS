@@ -10,6 +10,7 @@ namespace HMS.Services
     {
         Task<object> GetAllServices();
         Task<object> GetServiceById(int ServiceId);
+        Task<bool> ApplyService(int serviceId, string userId, int guestId, int staffId);
     }
     public class ServiceServices(HMSContext db, IMapper mapper) : BaseBusinessService<Service, ServiceDto>(mapper, db), IServiceServices
     {
@@ -124,5 +125,43 @@ namespace HMS.Services
 
         }
 
+        public async Task<bool> ApplyService(int serviceId, string userId, int guestId, int staffId)
+        {
+            try
+            {
+                var user = await db.User.FirstOrDefaultAsync(u => u.Id == userId);
+                if (user == null) throw new Exception("User not found");
+                var service = await db.Services.FirstOrDefaultAsync(s => s.ServiceId == serviceId);
+                if (service == null) throw new Exception("Service not found");
+                var userService = new UserService
+                {
+                    ServiceId = serviceId,
+                    UserId = userId,
+                };
+                await db.UserServices.AddAsync(userService);
+                var guestService = new
+                {
+                    service.ServiceId,
+                    service.ServiceName,
+                    service.Price,
+                    guestId,
+                };
+                await db.AddAsync(guestService);
+                var staffService = new
+                {
+                    service.ServiceId,
+                    service.ServiceName,
+                    service.Price,
+                    staffId,
+                };
+                await db.AddAsync(staffService);
+                await db.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }
