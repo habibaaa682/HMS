@@ -7,5 +7,6 @@
         public decimal Price { get; set; }
         public ICollection<UserService>? UserServices { get; set; }
         public ICollection<StaffService>? StaffServices { get; set; }
+        public ICollection<GuestService>? GuestServices { get; set; }
     }
 }

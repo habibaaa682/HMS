@@ -10,6 +10,7 @@
         public required string PhoneNumber { get; set; }
         public required string Address { get; set; }
         public ICollection<Reservation> ?Reservations { get; set; }
+        public ICollection<GuestService> ?GuestServices { get; set; }
         public User? User { get; set; }
     }
 }

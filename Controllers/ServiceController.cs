@@ -1,7 +1,6 @@
 ﻿using HMS.Models;
 using HMS.Models.DTO;
 using HMS.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HMS.Controllers
