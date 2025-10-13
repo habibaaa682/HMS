@@ -52,6 +52,12 @@ namespace HMS.Controllers
             if (room == null) return NotFound("Room not found");
             return Ok(room);
         }
+        [HttpGet]
+        public async Task<IActionResult> ReturnRoomsAvailable()
+        {
+            var availableRooms = await _roomServices.ReturnRoomsAvailable();
+            return Ok(availableRooms);
+        }
 
     }
 }

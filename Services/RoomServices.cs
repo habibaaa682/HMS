@@ -11,6 +11,7 @@ namespace HMS.Services
         Task<object> EditRoom(RoomDto roomDto,string id);
         Task<object> GetAllRooms();
         Task<object> GetRoomById(int roomId);
+        Task<int> ReturnRoomsAvailable();
     }
     public class RoomServices(HMSContext db, IMapper mapper): BaseBusinessService<Room, RoomDto>( mapper, db), IRoomServices
     {
@@ -110,5 +111,42 @@ namespace HMS.Services
             if (room == null) throw new Exception("Room not found");
             return room;
         }
+
+        public async Task<int> ReturnRoomsAvailable()
+        {
+            var rooms = await _db.Rooms.ToListAsync();
+            if (!rooms.Any())
+                throw new Exception("No rooms found");
+            var reservations = await _db.Reservations.ToListAsync();
+
+            int updatedCount = 0;
+
+            foreach (var room in rooms)
+            {              
+                var roomReservations = reservations
+                    .Where(r => r.RoomId == room.RoomId)
+                    .ToList();
+                if (!roomReservations.Any() || roomReservations.All(r => r.CheckOutDate < DateTime.UtcNow))
+                {
+                    if (!room.IsAvailable)
+                    {
+                        room.IsAvailable = true;
+                        updatedCount++;
+                    }
+                }
+                else
+                {
+                    if (room.IsAvailable)
+                    {
+                        room.IsAvailable = false;
+                        updatedCount++;
+                    }
+                }
+            }
+            await _db.SaveChangesAsync();
+
+            return updatedCount;
+        }
+
     }
 }
