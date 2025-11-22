@@ -41,7 +41,7 @@ namespace HMS.Controllers
             if (!result.Succeeded)
                 return BadRequest(result.Errors);
 
-            return Ok("User registered successfully");
+            return Ok(dto);
         }
 
         [HttpPost]
